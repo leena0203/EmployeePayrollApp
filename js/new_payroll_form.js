@@ -11,43 +11,46 @@ class EmployeePayrollData {
         else throw 'Name is incorrect!';
     }
 
-    get id() { return this._id}
+    get id() { return this._id;}
     set id(id) {
         this._id = id;
     }
 
-    get salary() { return this._salary}
+    get salary() { return this._salary;}
     set salary(salary) {
-        this._salary = salary
+        this._salary = salary;
     }
 
-    get startDate() { return this._startDate}
+    get startDate() { return this._startDate;}
     set startDate(startDate){
         this._startDate = startDate;
     }
 
-    get profilePic(){ return this._gender;}
-    set gender(gender){
+    get profilePic(){ return this._profilePic;}
+    set profilePic(profilePic){
+        this._profilePic = profilePic;
+    }
+    get gender() { return this._gender; }
+    set gender (gender) {
         this._gender = gender;
     }
-
     get department(){ return this._departmnet;}
     set department(department){
         this._departmnet = department;
     }
 
-    get note(){ return this._note;}
-    set note(note){
-        this._note = note;
+    get notes(){ return this._notes;}
+    set notes(notes){
+        this._notes = notes;
     }
 
     toString() {
         const options = {year : 'numeric', month : 'long', day : 'numeric'};
         const empDate = this.startDate === undefined ? "undefined" : 
         this.startDate.toLocaleDateString("en-US", options);
-        return "id = " + this.id + ", name = " + this.name + ", gender=" +this.gender +
-        ", profilePic= " + this.profilePic +", startDate=" + empDate +", note=" + this.note;      
-               
+        return "id = " + this.id + ", name = " + this.name + ", gender = " + this.gender + 
+               ", salary = " + this.salary + ", ProfilePic = " + this.profilePic + ", department = " + this.department + 
+               ", start date = " + empDate + ", Notes = " + this.notes;
     }
 }
 window.addEventListener('DOMContentLoaded',() => {
