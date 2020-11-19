@@ -171,7 +171,7 @@ select{
     text-decoration: none;
     text-align: center
 }
-.error-output{
+error-output{
     font-size: 12px;
     font-style: italic !important;
     color: red !important;
