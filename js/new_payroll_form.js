@@ -23,7 +23,8 @@ class EmployeePayrollData {
 
     get startDate() { return this._startDate;}
     set startDate(startDate){
-        this._startDate = startDate;
+        startDate = new Date(startDate);
+         this._startDate = startDate;
     }
 
     get profilePic(){ return this._profilePic;}
@@ -47,10 +48,10 @@ class EmployeePayrollData {
     toString() {
         const options = {year : 'numeric', month : 'long', day : 'numeric'};
         const empDate = this.startDate === undefined ? "undefined" : 
-        this.startDate.toLocaleDateString("en-US", options);
-        return "id = " + this.id + ", name = " + this.name + ", gender = " + this.gender + 
+        (new Date(this.startDate)).toLocaleDateString("en-US", options);
+                        return "id = " + this.id + ", name = " + this.name + ", gender = " + this.gender + 
                ", salary = " + this.salary + ", ProfilePic = " + this.profilePic + ", department = " + this.department + 
-               ", start date = " + empDate + ", Notes = " + this.notes;
+               ", start date = " + this.startDate + ", Notes = " + this.notes;
     }
 }
 window.addEventListener('DOMContentLoaded',() => {
@@ -77,12 +78,14 @@ salary.addEventListener('input', function(){
 });
 });
 const save = () => {
-    try{
+        try{
         let employeePayrollData = createEmployeePayroll();
         createAndUpdateStorage(employeePayrollData);
     }catch (e){
+        console.log(e);
         return;
     }
+    
 }
 
 function createAndUpdateStorage(employeePayrollData){
@@ -112,7 +115,8 @@ const createEmployeePayroll = () => {
     employeePayrollData.notes = getInputValueById('#notes');
     let date = getInputValueById('#day') + " " + getInputValueById('#month') + " " +
                getInputValueById('#year');
-    employeePayrollData.date = Date.parse(date);
+              
+    employeePayrollData.startDate = Date.parse(date);
     alert(employeePayrollData.toString());
     return employeePayrollData;
 }
