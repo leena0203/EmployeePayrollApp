@@ -69,7 +69,7 @@ name.addEventListener('input', function(){
     }
     try{
         (new EmployeePayrollData()).name = name.value;
-        setTextValue('.textError', "");
+        setTextValue('.textError', '');
     }catch(e){
         setTextValue('.text-error', e);
     }
@@ -121,7 +121,7 @@ const createAndUpdateStorage = () => {
     if(employeePayrollList){
         let empPayrollData = employeePayrollList.find(empData => empData._id == empPayrollObj._id)
         if(!empPayrollData){
-            employeePayrollList.push(createEmployeePayroll());
+            employeePayrollList.push(createEmployeePayrollData());
         }else{
             const index = employeePayrollList.map(empData => empData._id).indexOf(empPayrollData._id);
             employeePayrollList.splice(index, 1, createEmployeePayrollData(empPayrollData._id));
