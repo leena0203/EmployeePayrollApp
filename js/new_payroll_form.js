@@ -1,3 +1,5 @@
+let isUpdate = false;
+let empPayrollObj = {};
 /* UC8 */
 /* UC1_DAY38 */
 class EmployeePayrollData {
@@ -76,6 +78,7 @@ output.textContent = salary.value;
 salary.addEventListener('input', function(){
     output.textContent = salary.value;
 });
+checkForUpdate();
 });
 const save = () => {
         try{
@@ -139,15 +142,42 @@ const getInputElementValue= (id) => {
     let value = document.getElementById(id).value;
     return value;
 }
+
+const setForm = () => {
+    setValue('#name', empPayrollObj._name);
+    setSelectedValues('[name = profile]', empPayrollObj._profilePic);
+    setSelectedValues('[name = gender]', empPayrollObj._gender);
+    setSelectedValues('[name = department]', empPayrollObj._department);
+    setValue('#salary', empPayrollObj._salary);
+    setTextValue('.salary-output', empPayrollObj._salary);
+    setValue('#notes', empPayrollObj._notes);
+    let date = stringifyDate(empPayrollObj._startDate).split(" ");
+    setValue('#day', date[0]);
+    setValue('#month', date[1]);
+    setValue('#year', date[2]);
+}
+
+setSelectedValues = (propertyValue, value) => {
+
+    let allItems = document.querySelectorAll(propertyValue);
+    allItems.forEach(item => {
+        if(Array.isArray(value)){
+            if (value.includes(item.value))
+                item.checked = true;
+        }
+        else if(item.value == value)
+            item.checked = true;
+    });
+}
 const resetForm = () => {
     setValue('#name','');
     unsetSelectedValues('[name = gender');
     unsetSelectedValues('[name = department');
     unsetSelectedValues('[name = profile');
     setValue('#salary', '');
-    setValue('#day', '1');
-    setValue('#month', 'January');
-    setValue('#year', '2020');
+    setValue('#day', 0);
+    setValue('#month', 0);
+    setValue('#year', 0);
     setValue('#notes', '');
 }
 
@@ -166,4 +196,16 @@ const setValue = (id, value) => {
 const setTextValue = (id, value) =>{
     const element = document.querySelector(id);
     element.textContent = value;
+}
+const setSelectedIndex = (id, index) => {
+    const element = document.querySelector(id);
+    element.selectedIndex = index;
+}
+
+checkForUpdate = () => {
+    const empPayrollJson = localStorage.getItem('editEmp');
+    isUpdate = empPayrollJson ? true : false;
+    if(!isUpdate) return;
+    empPayrollObj = JSON.parse(empPayrollJson);
+    setForm();
 }
