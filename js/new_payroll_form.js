@@ -35,9 +35,9 @@ class EmployeePayrollData {
     set gender (gender) {
         this._gender = gender;
     }
-    get department(){ return this._departmnet;}
+    get department(){ return this._department;}
     set department(department){
-        this._departmnet = department;
+        this._department = department;
     }
 
     get notes(){ return this._notes;}
