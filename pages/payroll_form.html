@@ -20,7 +20,7 @@
         </header>
         <!--UC2-->
         <div class ="form-content" id = "formId">
-            <form class = "form" action = "#" onreset = "resetForm()" onsubmit = "save()">
+            <form class = "form" action = "#" onreset = "resetForm()" onsubmit = "save(event)">
             <div class="form-head">Employee Payroll Form </div>
                 <div class="row-content">
                 <label class="label text" for ="name">Name</label>
@@ -88,7 +88,7 @@
                 </div>
                 <div class = "row-content">
                     <label class = "label text" for = "startDate">StartDate</label>
-                    <div>
+                      <div id = "date">
                         <select id = "day" name ="Day">
                             <option value = "1">1</option>
                             <option value = "2">2</option>
@@ -144,6 +144,7 @@
                             <option value = "2016">2016</option>
                         </select>
                     </div>
+                    <error-output class = "date-error" for = 'startDate'></error-output>
                 </div>
                 <!--UC6-->
                 <div class = "row-content">
@@ -161,5 +162,8 @@
             </form>
         </div>
         <script src="../js/new_payroll_form.js"></script>
+        <script src="../js/new_home.js"></script>
+        <script src="../js/site_properties.js"></script>
+        <script src="../js/utility.js"></script>
     </body>
     
