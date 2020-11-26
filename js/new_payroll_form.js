@@ -62,14 +62,14 @@ class EmployeePayrollData {
 window.addEventListener('DOMContentLoaded',() => {
 
 const name = document.querySelector('#name');
-name.addEventListener('input', function(){
+name.addEventListener('input', function (){
         if(name.value.length == 0){
             setTextValue('.text-error', '');
         return;
     }
     try{
         (new EmployeePayrollData()).name = name.value;
-        setTextValue('.textError', '');
+        setTextValue('.text-error', '');
     }catch(e){
         setTextValue('.text-error', e);
     }
